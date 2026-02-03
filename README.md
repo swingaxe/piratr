@@ -42,7 +42,7 @@ We present **PIRATR**, an end-to-end 3D object detection framework for robotic u
 
 ![](assets/architecture.jpg)
 
-- PIRATR builds upon the PI3DETR repository, that you can find [here](https://github.com/fafraob/pi3detr.git).
+- **PIRATR** builds upon the **PI3DETR** repository, that you can find [here](https://github.com/fafraob/pi3detr.git).
 
 ## Installation
 Our code is tested with PyTorch 2.5.1, CUDA 12.1 and Python 3.11.10. It may and probably will work with other versions too.
