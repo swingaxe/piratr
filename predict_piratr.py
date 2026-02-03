@@ -1,7 +1,7 @@
 """
-Prediction script for PI3DETR model.
+Prediction script for PIRATR model.
 
-This script loads a trained PI3DETR model and performs inference on 3D point cloud data,
+This script loads a trained PIRATR model and performs inference on 3D point cloud data,
 visualizing the detected curves and polylines.
 """
 
@@ -30,7 +30,7 @@ from piratr.objects import build_gripper, build_loading_platform, build_pallet
 def parse_args() -> argparse.Namespace:
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(
-        description="Predict curves on point cloud data using PI3DETR"
+        description="Predict curves on point cloud data using PIRATR"
     )
 
     parser.add_argument(
