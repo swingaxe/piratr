@@ -1,20 +1,20 @@
 [![Contributors][contributors-shield]][contributors-url]
-[![Contributor1](https://github.com/MichaelSchwingshackl.png?size=28)](https://github.com/MichaelSchwingshackl)
+[![Contributor1](https://github.com/swingaxe.png?size=28)](https://github.com/swingaxe)
 [![Contributor2](https://github.com/fafraob.png?size=28)](https://github.com/fafraob)&nbsp;&nbsp;&nbsp;
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-[contributors-shield]: https://img.shields.io/github/contributors/MichaelSchwingshackl/piratr.svg?style=for-the-badge&height=40&color=D436C2
-[contributors-url]: https://github.com/MichaelSchwingshackl/piratr/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/MichaelSchwingshackl/piratr.svg?style=for-the-badge&height=40&color=36C2D4
-[forks-url]: https://github.com/MichaelSchwingshackl/piratr/network/members
-[stars-shield]: https://img.shields.io/github/stars/MichaelSchwingshackl/piratr.svg?style=for-the-badge&height=40&color=36C2D4
-[stars-url]: https://github.com/MichaelSchwingshackl/piratr/stargazers
-[issues-shield]: https://img.shields.io/github/issues/MichaelSchwingshackl/piratr.svg?style=for-the-badge&height=40&color=C2D436
-[issues-url]: https://github.com/MichaelSchwingshackl/piratr/issues
-[license-shield]: https://img.shields.io/github/license/MichaelSchwingshackl/piratr.svg?style=for-the-badge&height=40
-[license-url]: https://github.com/MichaelSchwingshackl/piratr/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/swingaxe/piratr.svg?style=for-the-badge&height=40&color=D436C2
+[contributors-url]: https://github.com/swingaxe/piratr/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/swingaxe/piratr.svg?style=for-the-badge&height=40&color=36C2D4
+[forks-url]: https://github.com/swingaxe/piratr/network/members
+[stars-shield]: https://img.shields.io/github/stars/swingaxe/piratr.svg?style=for-the-badge&height=40&color=36C2D4
+[stars-url]: https://github.com/swingaxe/piratr/stargazers
+[issues-shield]: https://img.shields.io/github/issues/swingaxe/piratr.svg?style=for-the-badge&height=40&color=C2D436
+[issues-url]: https://github.com/swingaxe/piratr/issues
+[license-shield]: https://img.shields.io/github/license/swingaxe/piratr.svg?style=for-the-badge&height=40
+[license-url]: https://github.com/swingaxe/piratr/blob/master/LICENSE.txt
 
 
 <div align="center">
