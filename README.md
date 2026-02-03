@@ -42,6 +42,8 @@ We present **PIRATR**, an end-to-end 3D object detection framework for robotic u
 
 ![](assets/architecture.jpg)
 
+- PIRATR builds upon the PI3DETR repository, that you can find [here](https://github.com/fafraob/pi3detr.git).
+
 ## Installation
 Our code is tested with PyTorch 2.5.1, CUDA 12.1 and Python 3.11.10. It may and probably will work with other versions too.
 
@@ -90,6 +92,14 @@ The `--config` file specifies all the hyperparameters and settings for training 
 ## Examples
 ![](assets/real_detections.png)
 Qualitative synthetic-to-real prediction of PIRATR, which is trained solely on synthetic data and evaluated on real scans. Predicted classes: <span style="color:#C2D436">**gripper**</span>, <span style="color:#36C2D4">**loading platforms**</span>, and <span style="color:#D436C2">**pallets**</span>.
+
+
+## Ground Truth Visualization
+To visualize the ground truth data, you can use the following command:
+```bash
+python test_dataset.py --config configs/piratr.yaml
+```
+This will visualize the ground truth data of the provided demo samples. You can adjust the `data_test_root` in the config file to visualize another test dataset.
 
 ## Evaluation
 To compute the evaluation metrics presented in the paper, use the following command:
