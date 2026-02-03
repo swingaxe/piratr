@@ -2,17 +2,13 @@ import torch
 import argparse
 import numpy as np
 import polyscope as ps
-from pi3detr import (
+from piratr import (
     build_dataset_config,
     build_dataset,
     load_args,
 )
-from pi3detr.utils.curve_fitter import (
-    torch_bezier_curve,
-    torch_line_points,
-    generate_points_on_circle_torch,
-    torch_arc_points,
-)
+
+from piratr.objects import build_gripper, build_loading_platform, build_pallet
 
 
 def parse_args() -> argparse.Namespace:
@@ -36,83 +32,89 @@ def visualize_gt_data(data):
     ps.remove_all_structures()
     points = data.pos.cpu().numpy()
 
-    pc = ps.register_point_cloud("Point Cloud", points, color=(0.5, 0.5, 0.5), radius=0.002, material="wax")
-    
-    class_names = ["None", "BSpline", "Line", "Circle", "Arc"]
-    colors = [
-        (0.0, 0.0, 0.0),
-        (0.8, 0.2, 0.0),  # BSpline - orange/red
-        (0.0, 0.0, 1.0),  # Line - blue
-        (0.0, 1.0, 0.0),  # Circle - green
-        (1.0, 0.0, 0.0),  # Arc - red
-    ]
-    
-    for idx, curve_params in enumerate(data.y_params.cpu().numpy()):
-        curve_type = data.y_cls.cpu().numpy()[idx]
-        curve_type_str = {0: "none", 1: "bspline", 2: "line", 3: "circle", 4: "arc"}[
-            curve_type
-        ]
-        if curve_type == 1:  # B-spline
-            curve_points = (
-                torch_bezier_curve(torch.tensor(curve_params).reshape(1, 4, 3), 50)
-                .squeeze(0)
-                .numpy()
-            )
-        elif curve_type == 2:  # Line
-            mid_point = curve_params[0:3]
-            direction = curve_params[3:6]
-            length = curve_params[6]
-            curve_points = (
-                torch_line_points(
-                    torch.tensor(mid_point - direction * length / 2).unsqueeze(0),
-                    torch.tensor(mid_point + direction * length / 2).unsqueeze(0),
-                    50,
-                )
-                .squeeze(0)
-                .numpy()
-            )
-        elif curve_type == 3:  # Circle
-            curve_points = (
-                generate_points_on_circle_torch(
-                    torch.tensor(curve_params[0:3]).unsqueeze(0),
-                    torch.tensor(curve_params[3:6]).unsqueeze(0),
-                    torch.tensor(curve_params[6]).unsqueeze(0),
-                    50,
-                )
-                .squeeze(0)
-                .numpy()
-            )
-        elif curve_type == 4:  # Arc
+    pc = ps.register_point_cloud(
+        "Point Cloud", points, color=(0.5, 0.5, 0.5), radius=0.001, material="wax"
+    )
+    scale = 1.0
+    if hasattr(data, "scale"):
+        scale = data.scale.cpu().item()
 
-            curve_points = (
-                torch_arc_points(
-                    torch.tensor(curve_params[6:9]).unsqueeze(0),
-                    torch.tensor(curve_params[0:3]).unsqueeze(0),
-                    torch.tensor(curve_params[3:6]).unsqueeze(0),
-                    50,
-                )
-                .squeeze(0)
-                .numpy()
+    for i in range(data.y_params.shape[0]):
+        if data.y_cls[i] == 1:  # gripper class
+            mesh_gripper = build_gripper(
+                pos=data.y_params[i, :3].cpu().numpy(),
+                quat=data.y_params[i, 3:7].cpu().numpy(),
+                jaw_opening=(data.y_params[i, 7].cpu().numpy() + 1) / 2,
+                scale=scale,
             )
-        else:
-            continue  # Skip unknown curve types
+            ps.register_surface_mesh(
+                f"Gripper_{i}",
+                mesh_gripper.vertices,
+                mesh_gripper.faces,
+                color=(0.76, 0.83, 0.21),
+                material="wax",
+            )
 
-        ps.register_curve_network(
-            f"{class_names[curve_type]} {idx}",
-            curve_points,
-            np.array([[i, i + 1] for i in range(len(curve_points) - 1)]),
-            radius=0.004,
-            color=colors[curve_type],
-            material="wax",
-        )
-        
+            ps.register_point_cloud(
+                f"Gripper Points {i}",
+                data.object_points[i].cpu().numpy(),
+                radius=0.002,
+                color=(0.76, 0.83, 0.21),
+                material="wax",
+                enabled=False,
+            )
+        elif data.y_cls[i] == 2:  # loading platform class
+            mesh_loading_platform = build_loading_platform(
+                pos=data.y_params[i, :3].cpu().numpy(),
+                quat=data.y_params[i, 3:7].cpu().numpy(),
+                scale=scale,
+            )
+            ps.register_surface_mesh(
+                f"Loading Platform_{i}",
+                mesh_loading_platform.vertices,
+                mesh_loading_platform.faces,
+                color=(0.21, 0.76, 0.83),
+                material="wax",
+            )
+
+            ps.register_point_cloud(
+                f"Loading Platform Points {i}",
+                data.object_points[i].cpu().numpy(),
+                radius=0.002,
+                color=(0.21, 0.76, 0.83),
+                material="wax",
+                enabled=False,
+            )
+        elif data.y_cls[i] == 3:  # pallet class
+            mesh_pallet = build_pallet(
+                pos=data.y_params[i, :3].cpu().numpy(),
+                quat=data.y_params[i, 3:7].cpu().numpy(),
+                scale=scale,
+            )
+            ps.register_surface_mesh(
+                f"Pallet_{i}",
+                mesh_pallet.vertices,
+                mesh_pallet.faces,
+                color=(0.83, 0.21, 0.76),
+                material="wax",
+            )
+
+            ps.register_point_cloud(
+                f"Pallet Points {i}",
+                data.object_points[i].cpu().numpy(),
+                radius=0.002,
+                color=(0.83, 0.21, 0.76),
+                material="wax",
+                enabled=False,
+            )
+
     # up direction
     ps.set_up_dir("z_up")
     # ground plane
     ps.set_ground_plane_mode("none")
 
-
     ps.show()
+
 
 def main():
     parsed_args = parse_args()
@@ -127,7 +129,7 @@ def main():
     dataset = build_dataset(dataset_config)
 
     visualize_fn = visualize_gt_data
-    
+
     for data in dataset:
         visualize_fn(data)
 

@@ -10,7 +10,7 @@ from pytorch_lightning.callbacks import (
     LearningRateMonitor,
 )
 from pytorch_lightning.loggers import TensorBoardLogger
-from pi3detr import (
+from piratr import (
     load_args,
     load_weights,
     build_model_config,
