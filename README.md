@@ -34,7 +34,7 @@ Center for Vision, Automation & Control
 
 &ast;co-first authors &emsp;
 
-<a href="https://arxiv.org/abs/2602.05557"><img src='https://img.shields.io/badge/arXiv-PIRATR-red' alt='Paper PDF'></a>
+<a href="https://arxiv.org/abs/2602.05557"><img src='https://img.shields.io/badge/arXiv-PIRATR-D436C2' alt='Paper PDF'></a>
 <a href='https://fafraob.github.io/pi3detr/'><img src='https://img.shields.io/badge/Project_Page-PIRATR@TODO-36C2D4' alt='Project Page'></a>
 </div>
 
