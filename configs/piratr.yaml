@@ -63,9 +63,9 @@ cost_weights:
 ### Dataset parameters
 dataset: "synth_dataset"
 num_workers: 8
-data_root: "/home/user/datasets/piratr/dataset_split_pallet_euro/train"
-data_val_root: "/home/user/datasets/piratr/dataset_split_pallet_euro/val"
-data_test_root: "/home/user/datasets/piratr/dataset_split_pallet_euro/test"
+data_root: "demo_samples"
+data_val_root: "demo_samples"
+data_test_root: "demo_samples"
 augment: true
 random_rotate_prob: 1.0
 random_rotate_angles: [5, 5, 0]
