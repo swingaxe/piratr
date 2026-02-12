@@ -15,6 +15,7 @@ val_interval: 1
 ### Model parameters
 model: "piratr"
 preencoder_type: "samodule"
+use_fpsample: true
 num_features: 0
 weights: "ckpts/piratr.ckpt"  # NOTE: for training from scratch set to null
 preencoder_lr: 1.0e-4
@@ -62,9 +63,9 @@ cost_weights:
 ### Dataset parameters
 dataset: "synth_dataset"
 num_workers: 8
-data_root: "demo_samples"
-data_val_root: "demo_samples"
-data_test_root: "demo_samples"
+data_root: "/home/user/datasets/piratr/dataset_split_pallet_euro/train"
+data_val_root: "/home/user/datasets/piratr/dataset_split_pallet_euro/val"
+data_test_root: "/home/user/datasets/piratr/dataset_split_pallet_euro/test"
 augment: true
 random_rotate_prob: 1.0
 random_rotate_angles: [5, 5, 0]

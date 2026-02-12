@@ -23,6 +23,7 @@ class ModelConfig:
     mAP_chamfer_threshold: Optional[float] = 0.00125
     preencoder_type: Optional[str] = "samodule"
     preencoder_lr: Optional[float] = 1e-4
+    use_fpsample: bool = False
     freeze_backbone: bool = False
     encoder_dim: Optional[int] = 768
     decoder_dim: Optional[int] = 768
@@ -60,6 +61,7 @@ class ModelConfig:
             preencoder = SAModule2(
                 MLP([self.num_features + 3, 64, 128, self.encoder_dim]),
                 num_out_points=self.num_transformer_points,
+                use_fpsample=self.use_fpsample,
             )
             preencoder.out_channels = self.encoder_dim
         else:
