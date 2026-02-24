@@ -117,14 +117,11 @@ For the current config, this will provide the evaluation metrics on the provided
 ## Citation
 <span style="color:#36C2D4">**TODO: Update**</span>
 ```bibtex
-@misc{2025pi3detr,
-      title={PI3DETR: Parametric Instance Detection of 3D Point Cloud Edges with a Geometry-Aware 3DETR}, 
-      author={Fabio F. Oberweger and Michael Schwingshackl and Vanessa Staderini},
-      year={2025},
-      eprint={2509.03262},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2509.03262}, 
+@article{schwingshackl2026piratr,
+  title={PIRATR: Parametric Object Inference for Robotic Applications with Transformers in 3D Point Clouds},
+  author={Schwingshackl, Michael and Oberweger, Fabio F and Niedermeyer, Mario and Johannes, Huemer and Murschitz, Markus},
+  journal={arXiv preprint arXiv:2602.05557},
+  year={2026}
 }
 
 ```
