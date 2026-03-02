@@ -115,7 +115,6 @@ python3 evaluate_piratr.py --config configs/piratr.yaml --checkpoint ckpts/pirat
 For the current config, this will provide the evaluation metrics on the provided demo samples, which are a subset of the full dataset. You can adjust the `data_test_root` in the config file to evaluate on another test dataset.
 
 ## Citation
-<span style="color:#36C2D4">**TODO: Update**</span>
 ```bibtex
 @article{schwingshackl2026piratr,
   title={PIRATR: Parametric Object Inference for Robotic Applications with Transformers in 3D Point Clouds},
